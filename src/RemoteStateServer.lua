@@ -24,6 +24,7 @@ function RemoteStateServer.new(stateKey, stateRawData)
     local serverState = setmetatable({}, ServerState)
     serverState._key = stateKey
     serverState._rawData = stateRawData
+    serverState._keyChangedSignals = {}
 
     serverState.Changed = Signal.new()
 
@@ -35,6 +36,11 @@ end
 function ServerState:Set(key, newValue)
     self._rawData[key] = newValue
     self.Changed:Fire(key, newValue)
+
+    if self._keyChangedSignals[key] then
+        self._keyChangedSignals[key]:Fire(newValue)
+    end
+
     RemoteStateServer._stateChangedRemote:FireAllClients(self._key, key, newValue)
 end
 
@@ -48,12 +54,25 @@ function ServerState:Increment(key, increment)
     self:Set(key, self:Get(key) + increment)
 end
 
+function ServerState:Decrement(key, decrement)
+    self:Set(key, self:Get(key) - decrement)
+end
+
 function ServerState:Get(key)
     return self._rawData[key]
 end
 
 function ServerState:GetState()
     return self._rawData
+end
+
+function ServerState:GetChangedSignal(key)
+    if self._keyChangedSignals[key] then
+        return self._keyChangedSignals[key]
+    else
+        self._keyChangedSignals[key] = Signal.new()
+        return self._keyChangedSignals[key]
+    end
 end
 
 return RemoteStateServer

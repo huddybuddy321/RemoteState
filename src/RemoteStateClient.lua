@@ -12,6 +12,10 @@ StateChangedRemote.OnClientEvent:Connect(function(stateKey, key, newValue)
     if state then
         state._rawData[key] = newValue
         state.Changed:Fire(key, newValue)
+
+        if state._keyChangedSignals[key] then
+            state._keyChangedSignals[key]:Fire(newValue)
+        end
     end
 end)
 
@@ -22,6 +26,7 @@ function ClientState.new(stateKey, stateRawData)
     local state = setmetatable({}, ClientState)
     state._rawData = stateRawData
     state._key = stateKey
+    state._keyChangedSignals = {}
 
     state.Changed = Signal.new()
 
@@ -34,6 +39,15 @@ end
 
 function ClientState:GetState()
     return self._rawData
+end
+
+function ClientState:GetChangedSignal(key)
+    if self._keyChangedSignals[key] then
+        return self._keyChangedSignals[key]
+    else
+        self._keyChangedSignals[key] = Signal.new()
+        return self._keyChangedSignals[key]
+    end
 end
 
 function RemoteStateClient.GetState(stateKey)
