@@ -3,6 +3,12 @@ local RunService = game:GetService("RunService")
 local Signal = require(script:FindFirstAncestor("RemoteState").Signal)
 local Promise = require(script:FindFirstAncestor("RemoteState").Promise)
 
+--[=[
+    @class RemoteStateServer
+
+    RemoteState server version.
+]=]
+
 local RemoteStateServer = {
     States = {}
 }
@@ -23,8 +29,30 @@ RemoteStateServer._getRemote.OnServerInvoke = function(player, stateKey)
     return RemoteStateServer.States[stateKey]._rawData
 end
 
+--[=[
+    @class ServerState
+
+    ServerState.
+]=]
+
+
 local ServerState = {}
 ServerState.__index = ServerState
+
+--[=[
+    Creates a new state
+
+    ```lua
+    local GameState = RemoteState.new("Game", {
+        Status = "Lobby"
+    })
+    ```
+
+    @param stateKey any
+    @param stateRawData table
+
+    @return ClientState
+]=]
 
 function RemoteStateServer.new(stateKey, stateRawData)
     assert(not RemoteStateServer.States[stateKey], "Trying to create a new state with a used key")
@@ -43,28 +71,89 @@ function RemoteStateServer.new(stateKey, stateRawData)
     return serverState
 end
 
+--[=[
+    Get state
+
+    ```lua
+    local GameState = RemoteState.GetState("Game")
+    ```
+
+    @param stateKey any
+
+    @return ClientState
+]=]
+
+function RemoteStateServer.GetState(stateKey)
+    return RemoteStateServer.States[stateKey]
+end
+
+--[=[
+    Wait for state
+
+    ```lua
+    RemoteState.WaitForState("Game"):andThen(function(state)
+        print(state:Get("Status"))
+    end)
+    ```
+
+    @param stateKey any
+
+    @return Promise
+]=]
+
 function RemoteStateServer.WaitForState(stateKey)
     return Promise.new(function(resolve)
         local heartbeatConnection
         heartbeatConnection = RunService.Heartbeat:Connect(function()
-            if RemoteStateServer.States[stateKey] then
+            if RemoteStateServer.GetState(stateKey) then
                 heartbeatConnection:Disconnect()
-                return RemoteStateServer.States[stateKey]
+                return RemoteStateServer.GetState(stateKey)
             end
         end)
     end)
 end
 
-function ServerState:Set(key, newValue)
-    self._rawData[key] = newValue
-    self.Changed:Fire(key, newValue)
+--[=[
+    Set value in state
+
+    @within ServerState
+
+    ```lua
+    GameState:Set("Status", "InGame")
+    ```
+
+    @param key any
+    @param value any
+]=]
+
+
+function ServerState:Set(key, value)
+    local oldValue = self._rawData[key]
+
+    self._rawData[key] = value
+    self.Changed:Fire(key, value)
 
     if self._keyChangedSignals[key] then
-        self._keyChangedSignals[key]:Fire(newValue)
+        self._keyChangedSignals[key]:Fire(value)
     end
 
-    RemoteStateServer._stateChangedRemote:FireAllClients(self._key, key, newValue)
+    RemoteStateServer._stateChangedRemote:FireAllClients(self._key, key, value, oldValue)
 end
+
+--[=[
+    Set multiple values in state
+
+    @within ServerState
+
+    ```lua
+    GameState:SetState({
+        Status = "InGame",
+        Gamemode = "Swordfight"
+    })
+    ```
+
+    @param newData array
+]=]
 
 function ServerState:SetState(newData)
     for key, value in pairs(newData) do
@@ -72,21 +161,91 @@ function ServerState:SetState(newData)
     end
 end
 
+--[=[
+    Increment a value in state.
+
+    @within ServerState
+
+    ```lua
+    GameState:Increment("PointsAvailable", 5)
+    ```
+
+    @param key any
+    @param increment number
+]=]
+
 function ServerState:Increment(key, increment)
     self:Set(key, self:Get(key) + increment)
 end
+
+--[=[
+    Decrement a value in state.
+
+    @within ServerState
+
+    ```lua
+    GameState:Decrement("PointsAvailable", 69)
+    ```
+
+    @param key any
+    @param decrement number
+]=]
 
 function ServerState:Decrement(key, decrement)
     self:Set(key, self:Get(key) - decrement)
 end
 
+--[=[
+    Get value from state
+
+    @within ServerState
+
+    ```lua
+    local gameStatus = GameState:Get("Status")
+    print("The current game status is " .. gameStatus)
+    ```
+
+    @param key any
+
+    @return any
+]=]
+
 function ServerState:Get(key)
     return self._rawData[key]
 end
 
+--[=[
+    Get all values from state
+
+    @within ServerState
+
+    ```lua
+    local gameData = GameState:GetState()
+    print(gameData)
+    ```
+
+    @return array
+]=]
+
 function ServerState:GetState()
     return self._rawData
 end
+
+--[=[
+    Get the changed signal of a value within a state
+
+    @within ServerState
+
+    ```lua
+    GameState:GetChangedSignal("Status"):Connect(function(status)
+        print("The game's new status is " .. status)
+    end)
+    ```
+
+    @param key any
+
+    @return Signal
+]=]
 
 function ServerState:GetChangedSignal(key)
     if self._keyChangedSignals[key] then
@@ -94,6 +253,23 @@ function ServerState:GetChangedSignal(key)
     else
         self._keyChangedSignals[key] = Signal.new()
         return self._keyChangedSignals[key]
+    end
+end
+
+--[=[
+    Disconnects all signals within state
+
+    @within ServerState
+
+    ```lua
+    GameState:Destroy()
+    ```
+]=]
+
+function ServerState:Destroy()
+    self.Changed:Destroy()
+    for _, signal in pairs(self._keyChangedSignals) do
+        signal:Destroy()
     end
 end
 
