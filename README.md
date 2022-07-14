@@ -15,8 +15,10 @@ local GameState = RemoteState.new("Game", {
 
 wait(5)
 
-GameState:Set("Gamemode", "Swordfight")
-GameState:Set("Status", "InGame")
+GameState:SetState({
+    Gamemode = "Swordfight",
+    Status = "InGame"
+})
 ```
 
 ### Client
