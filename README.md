@@ -2,7 +2,7 @@
  
 Remote State is a lightweight library that simplifies the process of replicating a server state to clients.
 
-## A  Example
+## Basic Example
 
 ### Server
 
@@ -19,6 +19,10 @@ GameState:SetState({
     Gamemode = "Swordfight",
     Status = "InGame"
 })
+
+wait(5)
+
+GameState:Set("Status", "Lobby")
 ```
 
 ### Client
