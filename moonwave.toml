@@ -1,4 +1,5 @@
 title = "RemoteState"
+gitRepoUrl = "https://github.com/huddybuddy321/RemoteState"
 
 classOrder = [
     "RemoteStateClient"
