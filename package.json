@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "yarn": "^1.22.19",
+    "@docusaurus/core": "2.0.0-rc.1",
+    "@docusaurus/preset-classic": "2.0.0-rc.1",
+    "gh-pages": "^2.2.0"
+  },
+  "scripts": {
+    "deploy": "gh-pages -d build"
+  }
+}
