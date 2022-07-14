@@ -1,2 +1,36 @@
 # RemoteState
  
+Remote State is a lightweight library that simplifies the process of replicating a server state to clients.
+
+## A  Example
+
+### Server
+
+```lua
+local RemoteState = require(game:GetService("ReplicatedStorage").RemoteState)
+
+local GameState = RemoteState.new("Game", {
+    Status = "Lobby",
+})
+
+wait(5)
+
+GameState:Set("Gamemode", "Swordfight")
+GameState:Set("Status", "InGame")
+```
+
+### Client
+
+```lua
+local RemoteState = require(game:GetService("ReplicatedStorage").RemoteState)
+
+local GameState = RemoteState.GetState("Game")
+
+GameState:GetChangedSignal("Status"):Connect(function(status)
+    if status == "Lobby" then
+        print("We are in the lobby!")
+    elseif status == "InGame" then
+        print("We are in a game, the gamemode is " ..  GameState:Get("Gamemode"))
+    end
+end)
+```

@@ -1,4 +1,7 @@
+local RunService = game:GetService("RunService")
+
 local Signal = require(script:FindFirstAncestor("RemoteState").Signal)
+local Promise = require(script:FindFirstAncestor("RemoteState").Promise)
 
 local RemoteStateServer = {
     States = {}
@@ -12,6 +15,9 @@ RemoteStateServer._stateChangedRemote = Instance.new("RemoteEvent")
 RemoteStateServer._stateChangedRemote.Name = "StateChanged"
 RemoteStateServer._stateChangedRemote.Parent = script:FindFirstAncestor("RemoteState")
 
+RemoteStateServer._stateCreatedRemote = Instance.new("RemoteEvent")
+RemoteStateServer._stateCreatedRemote.Name = "StateCreated"
+RemoteStateServer._stateCreatedRemote.Parent = script:FindFirstAncestor("RemoteState")
 
 RemoteStateServer._getRemote.OnServerInvoke = function(player, stateKey)
     return RemoteStateServer.States[stateKey]._rawData
@@ -21,6 +27,8 @@ local ServerState = {}
 ServerState.__index = ServerState
 
 function RemoteStateServer.new(stateKey, stateRawData)
+    assert(not RemoteStateServer.States[stateKey], "Trying to create a new state with a used key")
+
     local serverState = setmetatable({}, ServerState)
     serverState._key = stateKey
     serverState._rawData = stateRawData
@@ -30,7 +38,21 @@ function RemoteStateServer.new(stateKey, stateRawData)
 
     RemoteStateServer.States[stateKey] = serverState
 
+    RemoteStateServer._stateCreatedRemote:FireAllClients(stateKey, serverState._rawData)
+
     return serverState
+end
+
+function RemoteStateServer.WaitForState(stateKey)
+    return Promise.new(function(resolve)
+        local heartbeatConnection
+        heartbeatConnection = RunService.Heartbeat:Connect(function()
+            if RemoteStateServer.States[stateKey] then
+                heartbeatConnection:Disconnect()
+                return RemoteStateServer.States[stateKey]
+            end
+        end)
+    end)
 end
 
 function ServerState:Set(key, newValue)
