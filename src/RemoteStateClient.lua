@@ -14,7 +14,8 @@ local StateChangedRemote = script:FindFirstAncestor("RemoteState"):WaitForChild(
 ]=]
 
 local RemoteStateClient = {
-    States = {}
+    States = {},
+    None = require(script:FindFirstAncestor("RemoteState").None)
 }
 
 local function createNewDictionary(dictionary)
@@ -112,7 +113,7 @@ function RemoteStateClient.WaitForState(stateKey)
             heartbeatConnection = RunService.Heartbeat:Connect(function()
                 if RemoteStateClient.States[stateKey] then
                     heartbeatConnection:Disconnect()
-                    return RemoteStateClient.States[stateKey]
+                    resolve(RemoteStateClient.States[stateKey])
                 end
             end)
         end)
@@ -151,7 +152,15 @@ end
 ]=]
 
 function ClientState:Get(key)
-    return self._rawData[key]
+    local value = self._rawData[key]
+
+    if typeof(value) == "table" then
+        if value.Flag and value.Flag == RemoteStateClient.None.Flag then
+            return nil
+        end
+    end
+
+    return value
 end
 
 --[=[
@@ -168,7 +177,17 @@ end
 ]=]
 
 function ClientState:GetState()
-    return createNewDictionary(self._rawData)
+    local rawData = createNewDictionary(self._rawData)
+
+    for key, value in pairs(rawData) do
+        if typeof(value) == "table" then
+            if value.Flag and value.Flag == RemoteStateClient.None.Flag then
+                rawData[key] = nil
+            end
+        end
+    end
+
+    return rawData
 end
 
 --[=[

@@ -10,7 +10,8 @@ local Promise = require(script:FindFirstAncestor("RemoteState").Promise)
 ]=]
 
 local RemoteStateServer = {
-    States = {}
+    States = {},
+    None = require(script:FindFirstAncestor("RemoteState").None)
 }
 
 RemoteStateServer._getRemote = Instance.new("RemoteFunction")
@@ -119,7 +120,7 @@ function RemoteStateServer.WaitForState(stateKey)
         heartbeatConnection = RunService.Heartbeat:Connect(function()
             if RemoteStateServer.GetState(stateKey) then
                 heartbeatConnection:Disconnect()
-                return RemoteStateServer.GetState(stateKey)
+                resolve(RemoteStateServer.GetState(stateKey))
             end
         end)
     end)
@@ -251,7 +252,15 @@ end
 ]=]
 
 function ServerState:Get(key)
-    return self._rawData[key]
+    local value = self._rawData[key]
+
+    if typeof(value) == "table" then
+        if value.Flag and value.Flag == RemoteStateServer.None.Flag then
+            return nil
+        end
+    end
+
+    return value
 end
 
 --[=[
@@ -268,7 +277,17 @@ end
 ]=]
 
 function ServerState:GetState()
-    return createNewDictionary(self._rawData)
+    local rawData = createNewDictionary(self._rawData)
+
+    for key, value in pairs(rawData) do
+        if typeof(value) == "table" then
+            if value.Flag and value.Flag == RemoteStateServer.None.Flag then
+                rawData[key] = nil
+            end
+        end
+    end
+
+    return rawData
 end
 
 --[=[
