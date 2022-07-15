@@ -4,6 +4,7 @@ local Signal = require(script:FindFirstAncestor("RemoteState").Signal)
 local Promise = require(script:FindFirstAncestor("RemoteState").Promise)
 
 local GetStateRemote = script:FindFirstAncestor("RemoteState"):WaitForChild("GetState")
+local DestroyStateRemote = script:FindFirstAncestor("RemoteState"):WaitForChild("DestroyState")
 local StateCreatedRemote = script:FindFirstAncestor("RemoteState"):WaitForChild("StateCreated")
 local StateChangedRemote = script:FindFirstAncestor("RemoteState"):WaitForChild("StateChanged")
 
@@ -65,6 +66,13 @@ StateChangedRemote.OnClientEvent:Connect(function(stateKey, newData)
                 state._keyChangedSignals[key]:Fire(value, oldData[key], key)
             end
         end
+    end
+end)
+
+DestroyStateRemote.OnClientEvent:Connect(function(stateKey)
+    local state = RemoteStateClient.States[stateKey]
+    if state then
+        state:Destroy()
     end
 end)
 
@@ -246,11 +254,11 @@ end
 --[=[
     Disconnects all signals within state.
 
-    @within ClientState
+    :::note
+    `ClientState:Destroy()` does not affect the ServerState.
+    :::
 
-    ```lua
-    GameState:Destroy()
-    ```
+    @within ClientState
 ]=]
 
 function ClientState:Destroy()
@@ -258,6 +266,8 @@ function ClientState:Destroy()
     for _, signal in pairs(self._keyChangedSignals) do
         signal:Destroy()
     end
+
+    RemoteStateClient.States[self._key] = nil
 end
 
 return RemoteStateClient

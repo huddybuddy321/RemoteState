@@ -28,6 +28,10 @@ RemoteStateServer._getRemote = Instance.new("RemoteFunction")
 RemoteStateServer._getRemote.Name = "GetState"
 RemoteStateServer._getRemote.Parent = script:FindFirstAncestor("RemoteState")
 
+RemoteStateServer._destroyStateRemote = Instance.new("RemoteFunction")
+RemoteStateServer._destroyStateRemote.Name = "DestroyState"
+RemoteStateServer._destroyStateRemote.Parent = script:FindFirstAncestor("RemoteState")
+
 RemoteStateServer._stateChangedRemote = Instance.new("RemoteEvent")
 RemoteStateServer._stateChangedRemote.Name = "StateChanged"
 RemoteStateServer._stateChangedRemote.Parent = script:FindFirstAncestor("RemoteState")
@@ -394,11 +398,11 @@ end
 --[=[
     Disconnects all connections to signals within state.
 
-    @within ServerState
+    :::note
+    `ClientState:Destroy()` will be called on the given state.
+    :::
 
-    ```lua
-    GameState:Destroy()
-    ```
+    @within ServerState
 ]=]
 
 function ServerState:Destroy()
@@ -406,6 +410,10 @@ function ServerState:Destroy()
     for _, signal in pairs(self._keyChangedSignals) do
         signal:Destroy()
     end
+
+    RemoteStateServer.States[self._key] = nil
+
+    RemoteStateServer._destroyStateRemote:FireAllClients(self._key)
 end
 
 return RemoteStateServer
