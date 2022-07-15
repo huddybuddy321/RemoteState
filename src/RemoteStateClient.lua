@@ -4,9 +4,9 @@ local Signal = require(script:FindFirstAncestor("RemoteState").Signal)
 local Promise = require(script:FindFirstAncestor("RemoteState").Promise)
 
 local GetStateRemote = script:FindFirstAncestor("RemoteState"):WaitForChild("GetState")
-local DestroyStateRemote = script:FindFirstAncestor("RemoteState"):WaitForChild("DestroyState")
 local StateCreatedRemote = script:FindFirstAncestor("RemoteState"):WaitForChild("StateCreated")
 local StateChangedRemote = script:FindFirstAncestor("RemoteState"):WaitForChild("StateChanged")
+local StateDestroyedRemote = script:FindFirstAncestor("RemoteState"):WaitForChild("StateDestroyed")
 
 --[=[
     @class RemoteStateClient
@@ -69,7 +69,7 @@ StateChangedRemote.OnClientEvent:Connect(function(stateKey, newData)
     end
 end)
 
-DestroyStateRemote.OnClientEvent:Connect(function(stateKey)
+StateDestroyedRemote.OnClientEvent:Connect(function(stateKey)
     local state = RemoteStateClient.States[stateKey]
     if state then
         state:Destroy()

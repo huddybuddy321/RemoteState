@@ -28,10 +28,6 @@ RemoteStateServer._getRemote = Instance.new("RemoteFunction")
 RemoteStateServer._getRemote.Name = "GetState"
 RemoteStateServer._getRemote.Parent = script:FindFirstAncestor("RemoteState")
 
-RemoteStateServer._destroyStateRemote = Instance.new("RemoteFunction")
-RemoteStateServer._destroyStateRemote.Name = "DestroyState"
-RemoteStateServer._destroyStateRemote.Parent = script:FindFirstAncestor("RemoteState")
-
 RemoteStateServer._stateChangedRemote = Instance.new("RemoteEvent")
 RemoteStateServer._stateChangedRemote.Name = "StateChanged"
 RemoteStateServer._stateChangedRemote.Parent = script:FindFirstAncestor("RemoteState")
@@ -39,6 +35,11 @@ RemoteStateServer._stateChangedRemote.Parent = script:FindFirstAncestor("RemoteS
 RemoteStateServer._stateCreatedRemote = Instance.new("RemoteEvent")
 RemoteStateServer._stateCreatedRemote.Name = "StateCreated"
 RemoteStateServer._stateCreatedRemote.Parent = script:FindFirstAncestor("RemoteState")
+
+RemoteStateServer._stateDestroyedRemote = Instance.new("RemoteEvent")
+RemoteStateServer._stateDestroyedRemote.Name = "StateDestroyed"
+RemoteStateServer._stateDestroyedRemote.Parent = script:FindFirstAncestor("RemoteState")
+
 
 RemoteStateServer._getRemote.OnServerInvoke = function(player, stateKey)
     return RemoteStateServer.States[stateKey]._rawData
@@ -70,13 +71,15 @@ local ServerState = {}
 ServerState.__index = ServerState
 
 local function createNewDictionary(dictionary)
-    local newDictionary = {}
+    if dictionary and typeof(dictionary) == "table" then
+        local newDictionary = {}
 
-    for key, value in pairs(dictionary) do
-        newDictionary[key] = value
+        for key, value in pairs(dictionary) do
+            newDictionary[key] = value
+        end
+
+        return newDictionary
     end
-
-    return newDictionary
 end
 
 --[=[
@@ -275,7 +278,9 @@ end
 
 function ServerState:Toggle(key)
     local toggle = not self:Get(key)
-    self:Set(key, not self:Get(key))
+
+    self:Set(key, toggle)
+
     return toggle
 end
 
@@ -413,7 +418,7 @@ function ServerState:Destroy()
 
     RemoteStateServer.States[self._key] = nil
 
-    RemoteStateServer._destroyStateRemote:FireAllClients(self._key)
+    RemoteStateServer._stateDestroyedRemote:FireAllClients(self._key)
 end
 
 return RemoteStateServer
