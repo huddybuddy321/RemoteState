@@ -1,6 +1,6 @@
 # RemoteState
  
-Remote State is a lightweight library that simplifies the process of replicating a server state to clients.
+Remote State is a lightweight library that simplifies the process of replicating state across clients.
 
 Read the [documentation](https://huddybuddy321.github.io/RemoteState/) for more information on Remote State.
 
