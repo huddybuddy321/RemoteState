@@ -12,18 +12,18 @@ Read the [documentation](https://huddybuddy321.github.io/RemoteState/) for more 
 local RemoteState = require(game:GetService("ReplicatedStorage").RemoteState)
 
 local GameState = RemoteState.new("Game", {
-    Status = "Lobby",
+    Status = "Intermission",
     Gamemode = RemoteState.None
 })
 
-wait(5)
+task.wait(5)
 
 GameState:SetState({
     Gamemode = "Swordfight",
     Status = "GamePlaying"
 })
 
-wait(5)
+task.wait(5)
 
 GameState:Reset()
 ```
@@ -36,8 +36,8 @@ local RemoteState = require(game:GetService("ReplicatedStorage").RemoteState)
 local GameState = RemoteState.GetState("Game")
 
 GameState:GetChangedSignal("Status"):Connect(function(status)
-    if status == "Lobby" then
-        print("We are in the lobby!")
+    if status == "Intermission" then
+        print("We are in intermission!")
     elseif status == "GamePlaying" then
         print("We are in a game, the gamemode is " ..  GameState:Get("Gamemode"))
     end

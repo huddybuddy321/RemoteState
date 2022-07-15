@@ -9,6 +9,16 @@ local Promise = require(script:FindFirstAncestor("RemoteState").Promise)
     RemoteState server version.
 ]=]
 
+--[=[
+    @prop None None
+
+    ```lua
+    GameState:Set("Map", RemoteState.None)
+    ```
+
+    @within RemoteStateServer
+]=]
+
 local RemoteStateServer = {
     States = {},
     None = require(script:FindFirstAncestor("RemoteState").None)
@@ -34,6 +44,21 @@ end
     @class ServerState
 
     ServerState.
+]=]
+
+--[=[
+    @prop Changed Signal
+
+    ```lua
+    local GameState = RemoteState.GetState("Game")
+    GameState.Changed:Connect(function(key, newValue, oldValue)
+        print(key .. " was changed")
+        print(newValue .. " is the new value")
+        print(oldValue .. " was the old value")
+    end)
+    ```
+
+    @within ServerState
 ]=]
 
 
@@ -64,6 +89,7 @@ end
 
     @return ClientState
 ]=]
+
 
 function RemoteStateServer.new(stateKey, stateRawData)
     assert(not RemoteStateServer.States[stateKey], "Trying to create a new state with a used key")

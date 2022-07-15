@@ -13,6 +13,12 @@ local StateChangedRemote = script:FindFirstAncestor("RemoteState"):WaitForChild(
     RemoteState client version.
 ]=]
 
+--[=[
+    @prop None None
+
+    @within RemoteStateClient
+]=]
+
 local RemoteStateClient = {
     States = {},
     None = require(script:FindFirstAncestor("RemoteState").None)
