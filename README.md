@@ -13,7 +13,7 @@ local RemoteState = require(game:GetService("ReplicatedStorage").RemoteState)
 
 local GameState = RemoteState.new("Game", {
     Status = "Lobby",
-    Gamemode = "Nothing"
+    Gamemode = RemoteState.None
 })
 
 wait(5)
