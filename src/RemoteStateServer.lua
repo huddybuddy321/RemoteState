@@ -39,6 +39,16 @@ end
 local ServerState = {}
 ServerState.__index = ServerState
 
+local function createNewDictionary(dictionary)
+    local newDictionary = {}
+
+    for key, value in pairs(dictionary) do
+        newDictionary[key] = value
+    end
+
+    return newDictionary
+end
+
 --[=[
     Creates a new state
 
@@ -60,7 +70,8 @@ function RemoteStateServer.new(stateKey, stateRawData)
     local serverState = setmetatable({}, ServerState)
     serverState._key = stateKey
     serverState._rawData = stateRawData or {}
-    serverState._initialRawData = stateRawData or {}
+
+    serverState._initialRawData = createNewDictionary(stateRawData) or {}
     serverState._keyChangedSignals = {}
 
     serverState.Changed = Signal.new()
@@ -257,8 +268,7 @@ end
 ]=]
 
 function ServerState:GetState()
-    local stateRawData = self._rawData
-    return stateRawData
+    return createNewDictionary(self._rawData)
 end
 
 --[=[

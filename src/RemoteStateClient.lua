@@ -17,6 +17,16 @@ local RemoteStateClient = {
     States = {}
 }
 
+local function createNewDictionary(dictionary)
+    local newDictionary = {}
+
+    for key, value in pairs(dictionary) do
+        newDictionary[key] = value
+    end
+
+    return newDictionary
+end
+
 StateChangedRemote.OnClientEvent:Connect(function(stateKey, key, newValue, oldValue)
     local state = RemoteStateClient.States[stateKey]
     if state then
@@ -158,8 +168,7 @@ end
 ]=]
 
 function ClientState:GetState()
-    local stateRawData = self._rawData
-    return stateRawData
+    return createNewDictionary(self._rawData)
 end
 
 --[=[
