@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdocs=self.webpackChunkdocs||[]).push([[916],{79268:e=>{e.exports=JSON.parse('{"functions":[],"properties":[],"types":[],"name":"None","desc":"Placeholder for the value nil.\\n\\n ```lua\\nGameState:Set(\\"Map\\", RemoteState.None)\\n```\\n\\nReturns nil.","source":{"line":12,"path":"src/None.lua"}}')}}]);
