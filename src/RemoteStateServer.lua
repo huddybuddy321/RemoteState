@@ -51,7 +51,7 @@ local function createNewDictionary(dictionary)
 end
 
 --[=[
-    Creates a new state
+    Creates a new state.
 
     ```lua
     local GameState = RemoteState.new("Game", {
@@ -85,7 +85,7 @@ function RemoteStateServer.new(stateKey, stateRawData)
 end
 
 --[=[
-    Get state
+    Get state.
 
     ```lua
     local GameState = RemoteState.GetState("Game")
@@ -101,7 +101,7 @@ function RemoteStateServer.GetState(stateKey)
 end
 
 --[=[
-    Wait for state
+    Wait for state.
 
     ```lua
     RemoteState.WaitForState("Game"):andThen(function(state)
@@ -127,7 +127,7 @@ function RemoteStateServer.WaitForState(stateKey)
 end
 
 --[=[
-    Set value in state
+    Set value in state.
 
     @within ServerState
 
@@ -159,7 +159,7 @@ function ServerState:Set(key, value)
 end
 
 --[=[
-    Set multiple values in state
+    Set multiple values in state.
 
     @within ServerState
 
@@ -250,7 +250,7 @@ function ServerState:Toggle(key)
 end
 
 --[=[
-    Get value from state
+    Get value from state.
 
     @within ServerState
 
@@ -277,7 +277,7 @@ function ServerState:Get(key)
 end
 
 --[=[
-    Get all values from state
+    Get all values from state.
 
     @within ServerState
 
@@ -304,7 +304,7 @@ function ServerState:GetState()
 end
 
 --[=[
-    Get the changed signal of a value within a state
+    Get the changed signal of a value within a state.
 
     @within ServerState
 
@@ -329,7 +329,7 @@ function ServerState:GetChangedSignal(key)
 end
 
 --[=[
-    Reset the state to its initial data
+    Reset the state to its initial data.
 
     @within ServerState
 
@@ -366,7 +366,7 @@ function ServerState:Reset()
 end
 
 --[=[
-    Disconnects all signals within state
+    Disconnects all connections to signals within state.
 
     @within ServerState
 

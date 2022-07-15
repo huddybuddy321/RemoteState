@@ -87,7 +87,7 @@ local ClientState = {}
 ClientState.__index = ClientState
 
 --[=[
-    Get state
+    Get state.
 
     ```lua
     local GameState = RemoteState.GetState("Game")
@@ -112,7 +112,7 @@ function RemoteStateClient.GetState(stateKey)
 end
 
 --[=[
-    Wait for state
+    Wait for state.
 
     ```lua
     RemoteState.WaitForState("Game"):andThen(function(state)
@@ -159,7 +159,7 @@ function ClientState.new(stateKey, stateRawData)
 end
 
 --[=[
-    Get value from state
+    Get value from state.
 
     @within ClientState
 
@@ -186,7 +186,7 @@ function ClientState:Get(key)
 end
 
 --[=[
-    Get all values from state
+    Get all values from state.
 
     @within ClientState
 
@@ -213,7 +213,7 @@ function ClientState:GetState()
 end
 
 --[=[
-    Get the changed signal of a value within a state
+    Get the changed signal of a value within a state.
 
     @within ClientState
 
@@ -238,7 +238,7 @@ function ClientState:GetChangedSignal(key)
 end
 
 --[=[
-    Disconnects all signals within state
+    Disconnects all signals within state.
 
     @within ClientState
 
