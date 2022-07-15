@@ -59,7 +59,8 @@ function RemoteStateServer.new(stateKey, stateRawData)
 
     local serverState = setmetatable({}, ServerState)
     serverState._key = stateKey
-    serverState._rawData = stateRawData
+    serverState._rawData = stateRawData or {}
+    serverState._initialRawData = stateRawData or {}
     serverState._keyChangedSignals = {}
 
     serverState.Changed = Signal.new()
@@ -124,6 +125,8 @@ end
 
     @param key any
     @param value any
+
+    @return any
 ]=]
 
 
@@ -138,6 +141,8 @@ function ServerState:Set(key, value)
     end
 
     RemoteStateServer._stateChangedRemote:FireAllClients(self._key, key, value, oldValue)
+
+    return value
 end
 
 --[=[
@@ -167,15 +172,17 @@ end
     @within ServerState
 
     ```lua
-    GameState:Increment("PointsAvailable", 5)
+    local pointsAvailable = GameState:Increment("PointsAvailable", 69)
     ```
 
     @param key any
     @param increment number
+
+    @return number
 ]=]
 
 function ServerState:Increment(key, increment)
-    self:Set(key, self:Get(key) + increment)
+    return self:Set(key, self:Get(key) + increment)
 end
 
 --[=[
@@ -184,15 +191,37 @@ end
     @within ServerState
 
     ```lua
-    GameState:Decrement("PointsAvailable", 69)
+    local pointsAvailable = GameState:Decrement("PointsAvailable", 69)
     ```
 
     @param key any
     @param decrement number
+
+    @return number
 ]=]
 
 function ServerState:Decrement(key, decrement)
-    self:Set(key, self:Get(key) - decrement)
+    return self:Set(key, self:Get(key) - decrement)
+end
+
+--[=[
+    Toggle a value in state.
+
+    @within ServerState
+
+    ```lua
+    local isPlaying = GameState:Toggle("Playing")
+    ```
+
+    @param key any
+
+    @return boolean
+]=]
+
+function ServerState:Toggle(key)
+    local toggle = not self:Get(key)
+    self:Set(key, not self:Get(key))
+    return toggle
 end
 
 --[=[
@@ -228,7 +257,8 @@ end
 ]=]
 
 function ServerState:GetState()
-    return self._rawData
+    local stateRawData = self._rawData
+    return stateRawData
 end
 
 --[=[
@@ -253,6 +283,28 @@ function ServerState:GetChangedSignal(key)
     else
         self._keyChangedSignals[key] = Signal.new()
         return self._keyChangedSignals[key]
+    end
+end
+
+--[=[
+    Reset the state to its initial data
+
+    @within ServerState
+
+    ```lua
+    wait(30)
+    print("Game over!")
+    GameState:Reset()
+    ```
+]=]
+
+function ServerState:Reset()
+    for key, _ in pairs(self._rawData) do
+        if self._initialRawData[key] then
+            self:Set(key, self._initialRawData[key])
+        else
+            self:Set(key, nil)
+        end
     end
 end
 

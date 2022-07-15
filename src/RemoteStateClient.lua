@@ -116,7 +116,7 @@ end)
 
 function ClientState.new(stateKey, stateRawData)
     local state = setmetatable({}, ClientState)
-    state._rawData = stateRawData
+    state._rawData = stateRawData or {}
     state._key = stateKey
     state._keyChangedSignals = {}
 
@@ -158,7 +158,8 @@ end
 ]=]
 
 function ClientState:GetState()
-    return self._rawData
+    local stateRawData = self._rawData
+    return stateRawData
 end
 
 --[=[
