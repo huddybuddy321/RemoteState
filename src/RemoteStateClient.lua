@@ -28,6 +28,8 @@ local function createNewDictionary(dictionary)
     return newDictionary
 end
 
+--[[
+
 StateChangedRemote.OnClientEvent:Connect(function(stateKey, key, newValue, oldValue)
     local state = RemoteStateClient.States[stateKey]
     if state then
@@ -36,6 +38,26 @@ StateChangedRemote.OnClientEvent:Connect(function(stateKey, key, newValue, oldVa
 
         if state._keyChangedSignals[key] then
             state._keyChangedSignals[key]:Fire(newValue, oldValue, key)
+        end
+    end
+end)
+]]--
+
+StateChangedRemote.OnClientEvent:Connect(function(stateKey, newData)
+    local state = RemoteStateClient.States[stateKey]
+    if state then
+        local oldData = createNewDictionary(state._rawData)
+
+        for key, value in pairs(newData) do
+            state._rawData[key] = value
+        end
+
+        for key, value in pairs(newData) do
+            state.Changed:Fire(value, oldData[key], key)
+
+            if state._keyChangedSignals[key] then
+                state._keyChangedSignals[key]:Fire(value, oldData[key], key)
+            end
         end
     end
 end)

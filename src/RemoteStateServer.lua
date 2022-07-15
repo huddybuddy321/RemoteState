@@ -152,7 +152,8 @@ function ServerState:Set(key, value)
         self._keyChangedSignals[key]:Fire(value)
     end
 
-    RemoteStateServer._stateChangedRemote:FireAllClients(self._key, key, value, oldValue)
+    --RemoteStateServer._stateChangedRemote:FireAllClients(self._key, key, value, oldValue)
+    RemoteStateServer._stateChangedRemote:FireAllClients(self._key, {[key] = value})
 
     return value
 end
@@ -173,9 +174,21 @@ end
 ]=]
 
 function ServerState:SetState(newData)
+    --Update all the values before calling changed signal
+
     for key, value in pairs(newData) do
-        self:Set(key, value)
+        self._rawData[key] = value
     end
+
+    for key, value in pairs(newData) do
+        self.Changed:Fire(key, value)
+
+        if self._keyChangedSignals[key] then
+            self._keyChangedSignals[key]:Fire(value)
+        end
+    end
+
+    RemoteStateServer._stateChangedRemote:FireAllClients(self._key, newData)
 end
 
 --[=[
@@ -328,6 +341,7 @@ end
 ]=]
 
 function ServerState:Reset()
+    --[[
     for key, _ in pairs(self._rawData) do
         if self._initialRawData[key] then
             self:Set(key, self._initialRawData[key])
@@ -335,6 +349,20 @@ function ServerState:Reset()
             self:Set(key, nil)
         end
     end
+    ]]--
+
+    local newData = {}
+
+    for key, _ in pairs(self._rawData) do
+        if self._initialRawData[key] then
+            newData[key] = self._initialRawData[key]
+        else
+            newData[key] = RemoteStateServer.None
+            --self:Set(key, nil)
+        end
+    end
+
+    self:SetState(newData)
 end
 
 --[=[
