@@ -20,7 +20,7 @@ wait(5)
 
 GameState:SetState({
     Gamemode = "Swordfight",
-    Status = "InGame"
+    Status = "GamePlaying"
 })
 
 wait(5)
@@ -38,7 +38,7 @@ local GameState = RemoteState.GetState("Game")
 GameState:GetChangedSignal("Status"):Connect(function(status)
     if status == "Lobby" then
         print("We are in the lobby!")
-    elseif status == "InGame" then
+    elseif status == "GamePlaying" then
         print("We are in a game, the gamemode is " ..  GameState:Get("Gamemode"))
     end
 end)
