@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="generator" content="Docusaurus v2.0.0-beta.21">
 <title data-rh="true">RemoteStateServer | RemoteState</title><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://huddybuddy321.github.io/RemoteState/api/RemoteStateServer"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docusaurus_tag" content="default"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docsearch:docusaurus_tag" content="default"><meta data-rh="true" property="og:title" content="RemoteStateServer | RemoteState"><meta data-rh="true" name="description" content="RemoteState server version."><meta data-rh="true" property="og:description" content="RemoteState server version."><link data-rh="true" rel="canonical" href="https://huddybuddy321.github.io/RemoteState/api/RemoteStateServer"><link data-rh="true" rel="alternate" href="https://huddybuddy321.github.io/RemoteState/api/RemoteStateServer" hreflang="en"><link data-rh="true" rel="alternate" href="https://huddybuddy321.github.io/RemoteState/api/RemoteStateServer" hreflang="x-default"><link rel="stylesheet" href="/RemoteState/assets/css/styles.4fbc2966.css">
-<link rel="preload" href="/RemoteState/assets/js/runtime~main.bb3e6c8a.js" as="script">
-<link rel="preload" href="/RemoteState/assets/js/main.76d016d8.js" as="script">
+<link rel="preload" href="/RemoteState/assets/js/runtime~main.a0a2193f.js" as="script">
+<link rel="preload" href="/RemoteState/assets/js/main.eeaeae61.js" as="script">
 </head>
 <body class="navigation-with-keyboard">
 <script>!function(){function e(e){document.documentElement.setAttribute("data-theme",e)}var t=function(){var e=null;try{e=localStorage.getItem("theme")}catch(e){}return e}();null!==t?e(t):window.matchMedia("(prefers-color-scheme: dark)").matches?e("dark"):(window.matchMedia("(prefers-color-scheme: light)").matches,e("light"))}()</script><div id="__docusaurus">
@@ -15,17 +15,17 @@
 </div></header><h2 class="anchor anchorWithStickyNavbar_LWe7" id="properties">Properties<a class="hash-link" href="#properties" title="Direct link to heading">​</a></h2><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="None"><code style="text-decoration:none">None</code><a class="hash-link" href="#None" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/huddybuddy321/RemoteState/blob/master/src/RemoteStateServer.lua#L21"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>RemoteStateServer<!-- -->.<!-- -->None<!-- -->:<!-- --> </code> <code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="/RemoteState/api/None">None</a></code></div><div>
 <pre class="language-lua"><code class="language-lua">GameState<span class="token punctuation">:</span><span class="token function">Set</span><span class="token punctuation">(</span><span class="token string">"Map"</span><span class="token punctuation">,</span> RemoteState<span class="token punctuation">.</span>None<span class="token punctuation">)</span>
 </code></pre>
-</div><h2 class="anchor anchorWithStickyNavbar_LWe7" id="functions">Functions<a class="hash-link" href="#functions" title="Direct link to heading">​</a></h2><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="new"><code style="text-decoration:none">new</code><a class="hash-link" href="#new" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/huddybuddy321/RemoteState/blob/master/src/RemoteStateServer.lua#L96"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>RemoteStateServer<!-- -->.</code><code class="green_DgR4">new</code><code>(</code><div class="inset_uKQm"><div><code>stateKey<!-- -->: </code><code class="blue_P4bS">any</code><code>,</code></div><div><code>stateRawData<!-- -->: </code><code class="blue_P4bS">table</code></div></div><code>) → </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="/RemoteState/api/ClientState">ClientState</a></code></div><div>
+</div><h2 class="anchor anchorWithStickyNavbar_LWe7" id="functions">Functions<a class="hash-link" href="#functions" title="Direct link to heading">​</a></h2><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="new"><code style="text-decoration:none">new</code><a class="hash-link" href="#new" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/huddybuddy321/RemoteState/blob/master/src/RemoteStateServer.lua#L99"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>RemoteStateServer<!-- -->.</code><code class="green_DgR4">new</code><code>(</code><div class="inset_uKQm"><div><code>stateKey<!-- -->: </code><code class="blue_P4bS">any</code><code>,</code></div><div><code>stateRawData<!-- -->: </code><code class="blue_P4bS">table</code></div></div><code>) → </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="/RemoteState/api/ClientState">ClientState</a></code></div><div>
 <p>Creates a new state.</p>
 <pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> GameState <span class="token operator">=</span> RemoteState<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token string">"Game"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
     Status <span class="token operator">=</span> <span class="token string">"Lobby"</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span>
 </code></pre>
-</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="GetState"><code style="text-decoration:none">GetState</code><a class="hash-link" href="#GetState" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/huddybuddy321/RemoteState/blob/master/src/RemoteStateServer.lua#L128"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>RemoteStateServer<!-- -->.</code><code class="green_DgR4">GetState</code><code>(</code><code>stateKey<!-- -->: </code><code class="blue_P4bS">any</code><code>) → </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="/RemoteState/api/ClientState">ClientState</a></code></div><div>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="GetState"><code style="text-decoration:none">GetState</code><a class="hash-link" href="#GetState" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/huddybuddy321/RemoteState/blob/master/src/RemoteStateServer.lua#L131"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>RemoteStateServer<!-- -->.</code><code class="green_DgR4">GetState</code><code>(</code><code>stateKey<!-- -->: </code><code class="blue_P4bS">any</code><code>) → </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="/RemoteState/api/ClientState">ClientState</a></code></div><div>
 <p>Get state.</p>
 <pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> GameState <span class="token operator">=</span> RemoteState<span class="token punctuation">.</span><span class="token function">GetState</span><span class="token punctuation">(</span><span class="token string">"Game"</span><span class="token punctuation">)</span>
 </code></pre>
-</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="WaitForState"><code style="text-decoration:none">WaitForState</code><a class="hash-link" href="#WaitForState" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/huddybuddy321/RemoteState/blob/master/src/RemoteStateServer.lua#L146"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>RemoteStateServer<!-- -->.</code><code class="green_DgR4">WaitForState</code><code>(</code><code>stateKey<!-- -->: </code><code class="blue_P4bS">any</code><code>) → </code><code class="blue_P4bS">Promise</code></div><div>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="WaitForState"><code style="text-decoration:none">WaitForState</code><a class="hash-link" href="#WaitForState" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/huddybuddy321/RemoteState/blob/master/src/RemoteStateServer.lua#L149"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>RemoteStateServer<!-- -->.</code><code class="green_DgR4">WaitForState</code><code>(</code><code>stateKey<!-- -->: </code><code class="blue_P4bS">any</code><code>) → </code><code class="blue_P4bS">Promise</code></div><div>
 <p>Wait for state.</p>
 <pre class="language-lua"><code class="language-lua">RemoteState<span class="token punctuation">.</span><span class="token function">WaitForState</span><span class="token punctuation">(</span><span class="token string">"Game"</span><span class="token punctuation">)</span><span class="token punctuation">:</span><span class="token function">andThen</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>state<span class="token punctuation">)</span>
     <span class="token function">print</span><span class="token punctuation">(</span>state<span class="token punctuation">:</span><span class="token function">Get</span><span class="token punctuation">(</span><span class="token string">"Status"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
@@ -56,7 +56,7 @@
             ],
             &quot;function_type&quot;: &quot;static&quot;,
             &quot;source&quot;: {
-                &quot;line&quot;: 96,
+                &quot;line&quot;: 99,
                 &quot;path&quot;: &quot;src/RemoteStateServer.lua&quot;
             }
         },
@@ -78,7 +78,7 @@
             ],
             &quot;function_type&quot;: &quot;static&quot;,
             &quot;source&quot;: {
-                &quot;line&quot;: 128,
+                &quot;line&quot;: 131,
                 &quot;path&quot;: &quot;src/RemoteStateServer.lua&quot;
             }
         },
@@ -100,7 +100,7 @@
             ],
             &quot;function_type&quot;: &quot;static&quot;,
             &quot;source&quot;: {
-                &quot;line&quot;: 146,
+                &quot;line&quot;: 149,
                 &quot;path&quot;: &quot;src/RemoteStateServer.lua&quot;
             }
         }
@@ -124,7 +124,7 @@
         &quot;path&quot;: &quot;src/RemoteStateServer.lua&quot;
     }
 }</pre></details></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#types" class="table-of-contents__link toc-highlight">Types</a></li><li><a href="#properties" class="table-of-contents__link toc-highlight">Properties</a><ul><li><a href="#None" class="table-of-contents__link toc-highlight">None</a></li></ul></li><li><a href="#functions" class="table-of-contents__link toc-highlight">Functions</a><ul><li><a href="#GetState" class="table-of-contents__link toc-highlight">.GetState</a></li><li><a href="#new" class="table-of-contents__link toc-highlight">.new</a></li><li><a href="#WaitForState" class="table-of-contents__link toc-highlight">.WaitForState</a></li></ul></li></ul></div></div></div></div></main></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2022 huddybuddy321. Built with Moonwave and Docusaurus.</div></div></div></footer></div>
-<script src="/RemoteState/assets/js/runtime~main.bb3e6c8a.js"></script>
-<script src="/RemoteState/assets/js/main.76d016d8.js"></script>
+<script src="/RemoteState/assets/js/runtime~main.a0a2193f.js"></script>
+<script src="/RemoteState/assets/js/main.eeaeae61.js"></script>
 </body>
 </html>
