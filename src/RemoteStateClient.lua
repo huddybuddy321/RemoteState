@@ -35,21 +35,6 @@ local function createNewDictionary(dictionary)
     return newDictionary
 end
 
---[[
-
-StateChangedRemote.OnClientEvent:Connect(function(stateKey, key, newValue, oldValue)
-    local state = RemoteStateClient.States[stateKey]
-    if state then
-        state._rawData[key] = newValue
-        state.Changed:Fire(key, newValue, oldValue)
-
-        if state._keyChangedSignals[key] then
-            state._keyChangedSignals[key]:Fire(newValue, oldValue, key)
-        end
-    end
-end)
-]]--
-
 StateChangedRemote.OnClientEvent:Connect(function(stateKey, newData)
     local state = RemoteStateClient.States[stateKey]
     if state then
@@ -232,8 +217,9 @@ end
     @within ClientState
 
     ```lua
-    GameState:GetChangedSignal("Status"):Connect(function(status)
+    GameState:GetChangedSignal("Status"):Connect(function(status, oldStatus, key)
         print("The game's new status is " .. status)
+        print("The game's old status was " .. oldStatus)
     end)
     ```
 
