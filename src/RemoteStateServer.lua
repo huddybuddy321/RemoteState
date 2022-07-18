@@ -176,13 +176,13 @@ end
 
 
 function ServerState:Set(key, value)
-    local oldValue = self._rawData[key]
+    local oldData = createNewDictionary(self._rawData)
 
     self._rawData[key] = value
-    self.Changed:Fire(key, value)
+    self.Changed:Fire(key, value, oldData[key])
 
     if self._keyChangedSignals[key] then
-        self._keyChangedSignals[key]:Fire(value)
+        self._keyChangedSignals[key]:Fire(value, oldData[key], key)
     end
 
     --RemoteStateServer._stateChangedRemote:FireAllClients(self._key, key, value, oldValue)
@@ -209,6 +209,8 @@ end
 function ServerState:SetState(newData)
     --Update all the values before calling changed signal
 
+    local oldData = createNewDictionary(self._rawData)
+
     for key, value in pairs(newData) do
         self._rawData[key] = value
     end
@@ -217,7 +219,7 @@ function ServerState:SetState(newData)
         self.Changed:Fire(key, value)
 
         if self._keyChangedSignals[key] then
-            self._keyChangedSignals[key]:Fire(value)
+            self._keyChangedSignals[key]:Fire(value, oldData[key], key)
         end
     end
 
@@ -344,7 +346,7 @@ end
     @within ServerState
 
     ```lua
-    GameState:GetChangedSignal("Status"):Connect(function(status)
+    GameState:GetChangedSignal("Status"):Connect(function(status, oldStatus, key)
         print("The game's new status is " .. status)
     end)
     ```

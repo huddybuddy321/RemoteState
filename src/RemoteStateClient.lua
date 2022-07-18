@@ -45,7 +45,7 @@ StateChangedRemote.OnClientEvent:Connect(function(stateKey, newData)
         end
 
         for key, value in pairs(newData) do
-            state.Changed:Fire(value, oldData[key], key)
+            state.Changed:Fire(key, value, oldData[key])
 
             if state._keyChangedSignals[key] then
                 state._keyChangedSignals[key]:Fire(value, oldData[key], key)
