@@ -216,7 +216,7 @@ function ServerState:SetState(newData)
     end
 
     for key, value in pairs(newData) do
-        self.Changed:Fire(key, value)
+        self.Changed:Fire(key, value, oldData[key])
 
         if self._keyChangedSignals[key] then
             self._keyChangedSignals[key]:Fire(value, oldData[key], key)
