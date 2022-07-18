@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="generator" content="Docusaurus v2.0.0-beta.21">
 <title data-rh="true">ServerState | RemoteState</title><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://huddybuddy321.github.io/RemoteState/api/ServerState"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docusaurus_tag" content="default"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docsearch:docusaurus_tag" content="default"><meta data-rh="true" property="og:title" content="ServerState | RemoteState"><meta data-rh="true" name="description" content="ServerState."><meta data-rh="true" property="og:description" content="ServerState."><link data-rh="true" rel="canonical" href="https://huddybuddy321.github.io/RemoteState/api/ServerState"><link data-rh="true" rel="alternate" href="https://huddybuddy321.github.io/RemoteState/api/ServerState" hreflang="en"><link data-rh="true" rel="alternate" href="https://huddybuddy321.github.io/RemoteState/api/ServerState" hreflang="x-default"><link rel="stylesheet" href="/RemoteState/assets/css/styles.4fbc2966.css">
-<link rel="preload" href="/RemoteState/assets/js/runtime~main.ef69e7f6.js" as="script">
-<link rel="preload" href="/RemoteState/assets/js/main.eddccefc.js" as="script">
+<link rel="preload" href="/RemoteState/assets/js/runtime~main.84db072c.js" as="script">
+<link rel="preload" href="/RemoteState/assets/js/main.d8bd827a.js" as="script">
 </head>
 <body class="navigation-with-keyboard">
 <script>!function(){function e(e){document.documentElement.setAttribute("data-theme",e)}var t=function(){var e=null;try{e=localStorage.getItem("theme")}catch(e){}return e}();null!==t?e(t):window.matchMedia("(prefers-color-scheme: dark)").matches?e("dark"):(window.matchMedia("(prefers-color-scheme: light)").matches,e("light"))}()</script><div id="__docusaurus">
@@ -31,41 +31,41 @@ GameState<span class="token punctuation">.</span>Changed<span class="token punct
     Gamemode <span class="token operator">=</span> <span class="token string">"Swordfight"</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span>
 </code></pre>
-</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="Increment"><code style="text-decoration:none">Increment</code><a class="hash-link" href="#Increment" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/huddybuddy321/RemoteState/blob/master/src/RemoteStateServer.lua#L241"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>ServerState<!-- -->:</code><code class="green_DgR4">Increment</code><code>(</code><div class="inset_uKQm"><div><code>key<!-- -->: </code><code class="blue_P4bS">any</code><code>,</code></div><div><code>increment<!-- -->: </code><code class="blue_P4bS">number</code></div></div><code>) → </code><code class="blue_P4bS">number</code></div><div>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="Increment"><code style="text-decoration:none">Increment</code><a class="hash-link" href="#Increment" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/huddybuddy321/RemoteState/blob/master/src/RemoteStateServer.lua#L243"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>ServerState<!-- -->:</code><code class="green_DgR4">Increment</code><code>(</code><div class="inset_uKQm"><div><code>key<!-- -->: </code><code class="blue_P4bS">any</code><code>,</code></div><div><code>increment<!-- -->: </code><code class="blue_P4bS">number</code></div></div><code>) → </code><code class="blue_P4bS">number</code></div><div>
 <p>Increment a value in state.</p>
 <pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> pointsAvailable <span class="token operator">=</span> GameState<span class="token punctuation">:</span><span class="token function">Increment</span><span class="token punctuation">(</span><span class="token string">"PointsAvailable"</span><span class="token punctuation">,</span> <span class="token number">69</span><span class="token punctuation">)</span>
 </code></pre>
-</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="Decrement"><code style="text-decoration:none">Decrement</code><a class="hash-link" href="#Decrement" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/huddybuddy321/RemoteState/blob/master/src/RemoteStateServer.lua#L260"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>ServerState<!-- -->:</code><code class="green_DgR4">Decrement</code><code>(</code><div class="inset_uKQm"><div><code>key<!-- -->: </code><code class="blue_P4bS">any</code><code>,</code></div><div><code>decrement<!-- -->: </code><code class="blue_P4bS">number</code></div></div><code>) → </code><code class="blue_P4bS">number</code></div><div>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="Decrement"><code style="text-decoration:none">Decrement</code><a class="hash-link" href="#Decrement" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/huddybuddy321/RemoteState/blob/master/src/RemoteStateServer.lua#L262"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>ServerState<!-- -->:</code><code class="green_DgR4">Decrement</code><code>(</code><div class="inset_uKQm"><div><code>key<!-- -->: </code><code class="blue_P4bS">any</code><code>,</code></div><div><code>decrement<!-- -->: </code><code class="blue_P4bS">number</code></div></div><code>) → </code><code class="blue_P4bS">number</code></div><div>
 <p>Decrement a value in state.</p>
 <pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> pointsAvailable <span class="token operator">=</span> GameState<span class="token punctuation">:</span><span class="token function">Decrement</span><span class="token punctuation">(</span><span class="token string">"PointsAvailable"</span><span class="token punctuation">,</span> <span class="token number">69</span><span class="token punctuation">)</span>
 </code></pre>
-</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="Toggle"><code style="text-decoration:none">Toggle</code><a class="hash-link" href="#Toggle" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/huddybuddy321/RemoteState/blob/master/src/RemoteStateServer.lua#L278"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>ServerState<!-- -->:</code><code class="green_DgR4">Toggle</code><code>(</code><code>key<!-- -->: </code><code class="blue_P4bS">any</code><code>) → </code><code class="blue_P4bS">boolean</code></div><div>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="Toggle"><code style="text-decoration:none">Toggle</code><a class="hash-link" href="#Toggle" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/huddybuddy321/RemoteState/blob/master/src/RemoteStateServer.lua#L280"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>ServerState<!-- -->:</code><code class="green_DgR4">Toggle</code><code>(</code><code>key<!-- -->: </code><code class="blue_P4bS">any</code><code>) → </code><code class="blue_P4bS">boolean</code></div><div>
 <p>Toggle a value in state.</p>
 <pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> isPlaying <span class="token operator">=</span> GameState<span class="token punctuation">:</span><span class="token function">Toggle</span><span class="token punctuation">(</span><span class="token string">"Playing"</span><span class="token punctuation">)</span>
 </code></pre>
-</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="Get"><code style="text-decoration:none">Get</code><a class="hash-link" href="#Get" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/huddybuddy321/RemoteState/blob/master/src/RemoteStateServer.lua#L301"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>ServerState<!-- -->:</code><code class="green_DgR4">Get</code><code>(</code><code>key<!-- -->: </code><code class="blue_P4bS">any</code><code>) → </code><code class="blue_P4bS">any</code></div><div>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="Get"><code style="text-decoration:none">Get</code><a class="hash-link" href="#Get" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/huddybuddy321/RemoteState/blob/master/src/RemoteStateServer.lua#L303"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>ServerState<!-- -->:</code><code class="green_DgR4">Get</code><code>(</code><code>key<!-- -->: </code><code class="blue_P4bS">any</code><code>) → </code><code class="blue_P4bS">any</code></div><div>
 <p>Get value from state.</p>
 <pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> gameStatus <span class="token operator">=</span> GameState<span class="token punctuation">:</span><span class="token function">Get</span><span class="token punctuation">(</span><span class="token string">"Status"</span><span class="token punctuation">)</span>
 <span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"The current game status is "</span> <span class="token operator">..</span> gameStatus<span class="token punctuation">)</span>
 </code></pre>
-</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="GetState"><code style="text-decoration:none">GetState</code><a class="hash-link" href="#GetState" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/huddybuddy321/RemoteState/blob/master/src/RemoteStateServer.lua#L326"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>ServerState<!-- -->:</code><code class="green_DgR4">GetState</code><code>(</code><code>) → </code><code class="blue_P4bS">array</code></div><div>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="GetState"><code style="text-decoration:none">GetState</code><a class="hash-link" href="#GetState" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/huddybuddy321/RemoteState/blob/master/src/RemoteStateServer.lua#L328"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>ServerState<!-- -->:</code><code class="green_DgR4">GetState</code><code>(</code><code>) → </code><code class="blue_P4bS">array</code></div><div>
 <p>Get all values from state.</p>
 <pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> gameData <span class="token operator">=</span> GameState<span class="token punctuation">:</span><span class="token function">GetState</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token function">print</span><span class="token punctuation">(</span>gameData<span class="token punctuation">)</span>
 </code></pre>
-</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="GetChangedSignal"><code style="text-decoration:none">GetChangedSignal</code><a class="hash-link" href="#GetChangedSignal" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/huddybuddy321/RemoteState/blob/master/src/RemoteStateServer.lua#L356"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>ServerState<!-- -->:</code><code class="green_DgR4">GetChangedSignal</code><code>(</code><code>key<!-- -->: </code><code class="blue_P4bS">any</code><code>) → </code><code class="blue_P4bS">Signal</code></div><div>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="GetChangedSignal"><code style="text-decoration:none">GetChangedSignal</code><a class="hash-link" href="#GetChangedSignal" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/huddybuddy321/RemoteState/blob/master/src/RemoteStateServer.lua#L358"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>ServerState<!-- -->:</code><code class="green_DgR4">GetChangedSignal</code><code>(</code><code>key<!-- -->: </code><code class="blue_P4bS">any</code><code>) → </code><code class="blue_P4bS">Signal</code></div><div>
 <p>Get the changed signal of a value within a state.</p>
-<pre class="language-lua"><code class="language-lua">GameState<span class="token punctuation">:</span><span class="token function">GetChangedSignal</span><span class="token punctuation">(</span><span class="token string">"Status"</span><span class="token punctuation">)</span><span class="token punctuation">:</span><span class="token function">Connect</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>status<span class="token punctuation">)</span>
+<pre class="language-lua"><code class="language-lua">GameState<span class="token punctuation">:</span><span class="token function">GetChangedSignal</span><span class="token punctuation">(</span><span class="token string">"Status"</span><span class="token punctuation">)</span><span class="token punctuation">:</span><span class="token function">Connect</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>status<span class="token punctuation">,</span> oldStatus<span class="token punctuation">,</span> key<span class="token punctuation">)</span>
     <span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"The game's new status is "</span> <span class="token operator">..</span> status<span class="token punctuation">)</span>
 <span class="token keyword">end</span><span class="token punctuation">)</span>
 </code></pre>
-</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="Reset"><code style="text-decoration:none">Reset</code><a class="hash-link" href="#Reset" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/huddybuddy321/RemoteState/blob/master/src/RemoteStateServer.lua#L377"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>ServerState<!-- -->:</code><code class="green_DgR4">Reset</code><code>(</code><code>) → </code><code>(</code><code>)</code></div><div>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="Reset"><code style="text-decoration:none">Reset</code><a class="hash-link" href="#Reset" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/huddybuddy321/RemoteState/blob/master/src/RemoteStateServer.lua#L379"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>ServerState<!-- -->:</code><code class="green_DgR4">Reset</code><code>(</code><code>) → </code><code>(</code><code>)</code></div><div>
 <p>Reset the state to its initial data.</p>
 <pre class="language-lua"><code class="language-lua"><span class="token function">wait</span><span class="token punctuation">(</span><span class="token number">30</span><span class="token punctuation">)</span>
 <span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"Game over!"</span><span class="token punctuation">)</span>
 GameState<span class="token punctuation">:</span><span class="token function">Reset</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 </code></pre>
-</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="Destroy"><code style="text-decoration:none">Destroy</code><a class="hash-link" href="#Destroy" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/huddybuddy321/RemoteState/blob/master/src/RemoteStateServer.lua#L412"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>ServerState<!-- -->:</code><code class="green_DgR4">Destroy</code><code>(</code><code>) → </code><code>(</code><code>)</code></div><div>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="Destroy"><code style="text-decoration:none">Destroy</code><a class="hash-link" href="#Destroy" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/huddybuddy321/RemoteState/blob/master/src/RemoteStateServer.lua#L414"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>ServerState<!-- -->:</code><code class="green_DgR4">Destroy</code><code>(</code><code>) → </code><code>(</code><code>)</code></div><div>
 <p>Disconnects all connections to signals within state.</p>
 <div class="admonition admonition-note alert alert--secondary">
   <div class="admonition-heading">
@@ -146,7 +146,7 @@ GameState<span class="token punctuation">:</span><span class="token function">Re
             ],
             &quot;function_type&quot;: &quot;method&quot;,
             &quot;source&quot;: {
-                &quot;line&quot;: 241,
+                &quot;line&quot;: 243,
                 &quot;path&quot;: &quot;src/RemoteStateServer.lua&quot;
             }
         },
@@ -173,7 +173,7 @@ GameState<span class="token punctuation">:</span><span class="token function">Re
             ],
             &quot;function_type&quot;: &quot;method&quot;,
             &quot;source&quot;: {
-                &quot;line&quot;: 260,
+                &quot;line&quot;: 262,
                 &quot;path&quot;: &quot;src/RemoteStateServer.lua&quot;
             }
         },
@@ -195,7 +195,7 @@ GameState<span class="token punctuation">:</span><span class="token function">Re
             ],
             &quot;function_type&quot;: &quot;method&quot;,
             &quot;source&quot;: {
-                &quot;line&quot;: 278,
+                &quot;line&quot;: 280,
                 &quot;path&quot;: &quot;src/RemoteStateServer.lua&quot;
             }
         },
@@ -217,7 +217,7 @@ GameState<span class="token punctuation">:</span><span class="token function">Re
             ],
             &quot;function_type&quot;: &quot;method&quot;,
             &quot;source&quot;: {
-                &quot;line&quot;: 301,
+                &quot;line&quot;: 303,
                 &quot;path&quot;: &quot;src/RemoteStateServer.lua&quot;
             }
         },
@@ -233,13 +233,13 @@ GameState<span class="token punctuation">:</span><span class="token function">Re
             ],
             &quot;function_type&quot;: &quot;method&quot;,
             &quot;source&quot;: {
-                &quot;line&quot;: 326,
+                &quot;line&quot;: 328,
                 &quot;path&quot;: &quot;src/RemoteStateServer.lua&quot;
             }
         },
         {
             &quot;name&quot;: &quot;GetChangedSignal&quot;,
-            &quot;desc&quot;: &quot;Get the changed signal of a value within a state.\n\n\n```lua\nGameState:GetChangedSignal(\&quot;Status\&quot;):Connect(function(status)\n    print(\&quot;The game&#x27;s new status is \&quot; .. status)\nend)\n```&quot;,
+            &quot;desc&quot;: &quot;Get the changed signal of a value within a state.\n\n\n```lua\nGameState:GetChangedSignal(\&quot;Status\&quot;):Connect(function(status, oldStatus, key)\n    print(\&quot;The game&#x27;s new status is \&quot; .. status)\nend)\n```&quot;,
             &quot;params&quot;: [
                 {
                     &quot;name&quot;: &quot;key&quot;,
@@ -255,7 +255,7 @@ GameState<span class="token punctuation">:</span><span class="token function">Re
             ],
             &quot;function_type&quot;: &quot;method&quot;,
             &quot;source&quot;: {
-                &quot;line&quot;: 356,
+                &quot;line&quot;: 358,
                 &quot;path&quot;: &quot;src/RemoteStateServer.lua&quot;
             }
         },
@@ -266,7 +266,7 @@ GameState<span class="token punctuation">:</span><span class="token function">Re
             &quot;returns&quot;: [],
             &quot;function_type&quot;: &quot;method&quot;,
             &quot;source&quot;: {
-                &quot;line&quot;: 377,
+                &quot;line&quot;: 379,
                 &quot;path&quot;: &quot;src/RemoteStateServer.lua&quot;
             }
         },
@@ -277,7 +277,7 @@ GameState<span class="token punctuation">:</span><span class="token function">Re
             &quot;returns&quot;: [],
             &quot;function_type&quot;: &quot;method&quot;,
             &quot;source&quot;: {
-                &quot;line&quot;: 412,
+                &quot;line&quot;: 414,
                 &quot;path&quot;: &quot;src/RemoteStateServer.lua&quot;
             }
         }
@@ -301,7 +301,7 @@ GameState<span class="token punctuation">:</span><span class="token function">Re
         &quot;path&quot;: &quot;src/RemoteStateServer.lua&quot;
     }
 }</pre></details></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#types" class="table-of-contents__link toc-highlight">Types</a></li><li><a href="#properties" class="table-of-contents__link toc-highlight">Properties</a><ul><li><a href="#Changed" class="table-of-contents__link toc-highlight">Changed</a></li></ul></li><li><a href="#functions" class="table-of-contents__link toc-highlight">Functions</a><ul><li><a href="#Decrement" class="table-of-contents__link toc-highlight">:Decrement</a></li><li><a href="#Destroy" class="table-of-contents__link toc-highlight">:Destroy</a></li><li><a href="#Get" class="table-of-contents__link toc-highlight">:Get</a></li><li><a href="#GetChangedSignal" class="table-of-contents__link toc-highlight">:GetChangedSignal</a></li><li><a href="#GetState" class="table-of-contents__link toc-highlight">:GetState</a></li><li><a href="#Increment" class="table-of-contents__link toc-highlight">:Increment</a></li><li><a href="#Reset" class="table-of-contents__link toc-highlight">:Reset</a></li><li><a href="#Set" class="table-of-contents__link toc-highlight">:Set</a></li><li><a href="#SetState" class="table-of-contents__link toc-highlight">:SetState</a></li><li><a href="#Toggle" class="table-of-contents__link toc-highlight">:Toggle</a></li></ul></li></ul></div></div></div></div></main></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2022 huddybuddy321. Built with Moonwave and Docusaurus.</div></div></div></footer></div>
-<script src="/RemoteState/assets/js/runtime~main.ef69e7f6.js"></script>
-<script src="/RemoteState/assets/js/main.eddccefc.js"></script>
+<script src="/RemoteState/assets/js/runtime~main.84db072c.js"></script>
+<script src="/RemoteState/assets/js/main.d8bd827a.js"></script>
 </body>
 </html>
